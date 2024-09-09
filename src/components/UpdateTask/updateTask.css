@@ -1,0 +1,11 @@
+.icon-transition {
+  transition: fill 0.3s ease-in-out;
+}
+
+.icon-default {
+  fill: red;
+}
+
+.icon-hovered {
+  fill: rgb(255, 100, 100);
+}

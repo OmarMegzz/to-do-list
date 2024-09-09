@@ -5,9 +5,9 @@ function TextInput({
   onChange,
   onKeyDown,
   value,
-  placeholder,
-  className,
-  errorMessage,
+  placeholder = "",
+  className = "",
+  inputType = "text",
 }) {
   return (
     <input
@@ -15,7 +15,7 @@ function TextInput({
         " text-black p-1 outline-none rounded-tl-sm rounded-bl-sm ",
         className
       )}
-      type="text"
+      type={inputType}
       value={value}
       placeholder={placeholder}
       onChange={onChange}

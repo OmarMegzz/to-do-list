@@ -5,9 +5,10 @@ import TextInput from "../TextInput/TextInput";
 import DisplayList from "../DisplayList/DisplayList";
 import UpdateTask from "../UpdateTask/UpdateTask";
 import { nanoid } from "nanoid";
+import { AddIcon, CloseIcon, DeleteIcon, EditIcon } from "../../assets";
 
 const ToDoList = () => {
-  const { tasks, addTask, deleteTask } = useTodoStore();
+  const { tasks, addTask, deleteTask, toggle, setToggle } = useTodoStore();
   const [newTask, setNewTask] = useState({ text: "", id: "" });
   const [isValid, setIsValid] = useState(true);
 
@@ -31,7 +32,7 @@ const ToDoList = () => {
   };
 
   return (
-    <div className="  bg-slate-950 flex-1 items-center justify-center  flex flex-col gap-9 md:gap-0 md:flex-row md:justify-evenly    ">
+    <div className="  bg-slate-950 flex-1 items-center justify-center  flex flex-col gap-9    ">
       <div className="flex flex-col gap-1">
         <div className="flex">
           <TextInput
@@ -41,11 +42,14 @@ const ToDoList = () => {
             onKeyDown={handleAddTaskKeyDown}
           />
 
-          <MainButton onClick={handleAddTask} text="Add" />
+          <MainButton
+            onClick={handleAddTask}
+            text={<AddIcon width={24} height={24} fill="#e2e8f0" />}
+          />
         </div>
         {!isValid && (
           <div className=" text-red-500 text-sm ">
-            please write a task to add
+            Please write a task to add
           </div>
         )}
       </div>
@@ -54,18 +58,33 @@ const ToDoList = () => {
         {tasks.map((task) => {
           return (
             <li
-              className=" text-white flex justify-center items-center flex-col gap-8 "
+              className="text-white flex justify-center items-center flex-col gap-5 bg-slate-400 p-4 rounded-md"
               key={task.id}
             >
-              <div className="task-delete flex justify-between  items-center w-full   ">
-                <h2 className=" text-2xl ">{task.text}</h2>
-                <MainButton
-                  onClick={() => handleDeleteTask(task)}
-                  text="Delete"
-                  className="py-1 rounded-sm"
-                />
+              <div className="task-delete flex justify-between items-center w-full gap-5   ">
+                <h2 className=" text-2xl break-all ">{task.text}</h2>
+                <div className="flex gap-3">
+                  <MainButton
+                    onClick={() => handleDeleteTask(task)}
+                    text={<DeleteIcon width={24} height={24} fill="red" />}
+                    className="px-1 py-1 rounded-full rounded-br-full rounded-tr-full  bg-slate-200"
+                  />
+
+                  {!toggle[task.id] && (
+                    <MainButton
+                      onClick={() =>
+                        setToggle({
+                          taskId: task.id,
+                          toggleStatus: !toggle[task.id],
+                        })
+                      }
+                      text={<EditIcon width={24} height={24} fill="blue" />}
+                      className="py-1 px-1 rounded-full rounded-br-full rounded-tr-full bg-slate-200"
+                    />
+                  )}
+                </div>
               </div>
-              <UpdateTask task={task} />
+              {toggle[task.id] && <UpdateTask task={task} />}
             </li>
           );
         })}

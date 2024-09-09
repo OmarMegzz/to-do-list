@@ -5,6 +5,8 @@ const LOCALSTORAGE_TASKS_KEY = "tasks";
 
 const useTodoStore = create((set) => ({
   tasks: getData(LOCALSTORAGE_TASKS_KEY) ?? [],
+  toggle: {},
+
   addTask: (task) =>
     set((state) => {
       const newTasks = [...state.tasks, task];
@@ -28,6 +30,10 @@ const useTodoStore = create((set) => ({
 
       setData(LOCALSTORAGE_TASKS_KEY, updatedTasks);
       return { tasks: updatedTasks };
+    }),
+  setToggle: ({ taskId, toggleStatus }) =>
+    set((state) => {
+      return { toggle: { ...state.toggle, [taskId]: toggleStatus } };
     }),
 }));
 
