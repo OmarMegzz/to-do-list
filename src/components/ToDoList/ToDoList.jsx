@@ -9,11 +9,15 @@ import { nanoid } from "nanoid";
 const ToDoList = () => {
   const { tasks, addTask, deleteTask } = useTodoStore();
   const [newTask, setNewTask] = useState({ text: "", id: "" });
+  const [isValid, setIsValid] = useState(true);
 
   const handleAddTask = () => {
-    if (newTask.text !== "") {
+    if (newTask.text.trim() !== "") {
       addTask(newTask);
       setNewTask({ text: "", id: "" });
+      setIsValid(true);
+    } else {
+      setIsValid(false);
     }
   };
   const handleAddTaskKeyDown = (e) => {
@@ -29,12 +33,13 @@ const ToDoList = () => {
   return (
     <>
       <div className="  bg-slate-950 h-full w-screen flex items-center justify-evenly  ">
-        <div className="p-12">
+        <div className="flex">
           <TextInput
             value={newTask.text}
             placeholder="Add Task ..."
             onChange={(e) => setNewTask({ text: e.target.value, id: nanoid() })}
             onKeyDown={handleAddTaskKeyDown}
+            errorMessage={isValid ? "" : "please write a task to add"}
           />
 
           <MainButton onClick={handleAddTask} text="Add" />
