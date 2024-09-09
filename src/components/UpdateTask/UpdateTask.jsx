@@ -19,7 +19,7 @@ function UpdateTask({ task }) {
   };
 
   return (
-    <div>
+    <div className="flex">
       <TextInput
         value={newValue}
         placeholder="Update Task ..."
