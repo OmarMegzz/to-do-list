@@ -36,7 +36,7 @@ function UpdateTask({ task }) {
                 onMouseOut={() => setIsHovered(false)}
               />
             }
-            className="bg-transparent px-0 pe-4 hover:bg-transparent"
+            className="bg-transparent pe-4 hover:bg-transparent"
             onClick={() => setToggle({ taskId: task.id, toggleStatus: false })}
           />
           <TextInput
@@ -47,7 +47,11 @@ function UpdateTask({ task }) {
             className="flex-1"
           />
 
-          <MainButton onClick={handleUpdateTask} text="Update" />
+          <MainButton
+            onClick={handleUpdateTask}
+            text="Update"
+            className="px-4 bg-slate-600 rounded-tr-sm rounded-br-sm"
+          />
         </div>
       )}
     </>

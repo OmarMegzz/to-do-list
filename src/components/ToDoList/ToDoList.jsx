@@ -44,6 +44,7 @@ const ToDoList = () => {
 
           <MainButton
             onClick={handleAddTask}
+            className="px-4 bg-slate-600 hover:bg-slate-500 rounded-tr-sm rounded-br-sm"
             text={<AddIcon width={24} height={24} fill="#e2e8f0" />}
           />
         </div>
@@ -67,7 +68,7 @@ const ToDoList = () => {
                   <MainButton
                     onClick={() => handleDeleteTask(task)}
                     text={<DeleteIcon width={24} height={24} fill="red" />}
-                    className="px-1 py-1 rounded-full rounded-br-full rounded-tr-full  bg-slate-200"
+                    className="px-1 py-1 rounded-full rounded-br-full rounded-tr-ful bg-slate-200 hover:bg-slate-600"
                   />
 
                   {!toggle[task.id] && (
@@ -79,7 +80,7 @@ const ToDoList = () => {
                         })
                       }
                       text={<EditIcon width={24} height={24} fill="blue" />}
-                      className="py-1 px-1 rounded-full rounded-br-full rounded-tr-full bg-slate-200"
+                      className="py-1 px-1 rounded-full rounded-br-full rounded-tr-full bg-slate-200 hover:bg-slate-600"
                     />
                   )}
                 </div>
