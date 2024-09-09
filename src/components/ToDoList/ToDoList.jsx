@@ -5,7 +5,7 @@ import TextInput from "../TextInput/TextInput";
 import DisplayList from "../DisplayList/DisplayList";
 import UpdateTask from "../UpdateTask/UpdateTask";
 import { nanoid } from "nanoid";
-import { AddIcon, CloseIcon, DeleteIcon, EditIcon } from "../../assets";
+import { AddIcon, DeleteIcon, EditIcon } from "../../assets";
 
 const ToDoList = () => {
   const { tasks, addTask, deleteTask, toggle, setToggle } = useTodoStore();
