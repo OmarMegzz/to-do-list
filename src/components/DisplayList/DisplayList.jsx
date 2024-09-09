@@ -4,10 +4,10 @@ import classnames from "classnames";
 function DisplayList({ children, className = "" }) {
   return (
     <div className="flex">
-      {children.length && (
+      {children.length > 0 && (
         <ul
           className={classnames(
-            "max-h-96 min-w-96 max-w-96 overflow-auto flex scrollbar-hide p-2 gap-5 flex-col",
+            "max-h-96 min-w-96 max-w-96 overflow-auto flex scrollbar-hide p-2 gap-5 flex-col ",
             className
           )}
         >
